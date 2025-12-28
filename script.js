@@ -40,9 +40,9 @@ function updateDisplay() {
 
     // Convert * to × and / to ÷ for display
     let displayExp = currentExpression
+        .replace(/\*\*2/g, '²')
         .replace(/\*/g, ' × ')
         .replace(/\//g, ' ÷ ')
-        .replace(/\*\*2/g, '²')
         .replace(/Math\.sqrt\(/g, '√(');
 
     resultDisplay.innerText = currentExpression === '' ? '0' : displayExp;
@@ -244,9 +244,21 @@ function toggleDropdown(type) {
     const isOpen = dropdown.classList.contains('open');
 
     // Close all first
-    document.querySelectorAll('.custom-dropdown').forEach(d => d.classList.remove('open'));
+    document.querySelectorAll('.custom-dropdown').forEach(d => {
+        d.classList.remove('open');
+        d.classList.remove('open-up');
+    });
 
     if (!isOpen) {
+        // Check if dropdown is near the bottom of the screen
+        const rect = dropdown.getBoundingClientRect();
+        const screenHeight = window.innerHeight;
+
+        // If less than 300px (dropdown-max-height) space at bottom, open upwards
+        if (screenHeight - rect.bottom < 300) {
+            dropdown.classList.add('open-up');
+        }
+
         dropdown.classList.add('open');
     }
 }
@@ -318,4 +330,22 @@ document.addEventListener('click', (e) => {
 // Initial Call
 document.addEventListener('DOMContentLoaded', () => {
     switchCategory('length');
+});
+
+// Update System Logic
+
+
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.custom-dropdown')) {
+        document.querySelectorAll('.custom-dropdown').forEach(d => d.classList.remove('open'));
+    }
+});
+
+// Initial Call
+document.addEventListener('DOMContentLoaded', () => {
+    switchCategory('length');
+
+
 });
