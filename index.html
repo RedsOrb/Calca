@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calca</title>
+    <title>Modern Calculator & Converter</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -76,6 +76,15 @@
             <!-- Converter View -->
             <section id="view-converter" class="view">
                 <div class="converter-card">
+                    <div class="category-bar">
+                        <button class="cat-btn active" data-cat="length"
+                            onclick="switchCategory('length')">Length</button>
+                        <button class="cat-btn" data-cat="data" onclick="switchCategory('data')">Data</button>
+                        <button class="cat-btn" data-cat="weight" onclick="switchCategory('weight')">Weight</button>
+                        <button class="cat-btn" data-cat="time" onclick="switchCategory('time')">Time</button>
+                        <button class="cat-btn" data-cat="speed" onclick="switchCategory('speed')">Speed</button>
+                    </div>
+
                     <div class="converter-row">
                         <div class="input-group">
                             <label id="label-from">From</label>
@@ -88,13 +97,7 @@
                                     <span class="chevron"></span>
                                 </button>
                                 <div class="dropdown-options" id="options-from">
-                                    <div class="option" onclick="selectUnit('from', 'km', 'Kilometer (KM)')">Kilometer
-                                        (KM)</div>
-                                    <div class="option" onclick="selectUnit('from', 'm', 'Meter (M)')">Meter (M)</div>
-                                    <div class="option" onclick="selectUnit('from', 'cm', 'Centimeter (CM)')">Centimeter
-                                        (CM)</div>
-                                    <div class="option" onclick="selectUnit('from', 'mm', 'Millimeter (MM)')">Millimeter
-                                        (MM)</div>
+                                    <!-- Dynamic options -->
                                 </div>
                             </div>
                         </div>
@@ -112,13 +115,7 @@
                                     <span class="chevron"></span>
                                 </button>
                                 <div class="dropdown-options" id="options-to">
-                                    <div class="option" onclick="selectUnit('to', 'km', 'Kilometer (KM)')">Kilometer
-                                        (KM)</div>
-                                    <div class="option" onclick="selectUnit('to', 'm', 'Meter (M)')">Meter (M)</div>
-                                    <div class="option" onclick="selectUnit('to', 'cm', 'Centimeter (CM)')">Centimeter
-                                        (CM)</div>
-                                    <div class="option" onclick="selectUnit('to', 'mm', 'Millimeter (MM)')">Millimeter
-                                        (MM)</div>
+                                    <!-- Dynamic options -->
                                 </div>
                             </div>
                         </div>
@@ -130,6 +127,5 @@
 
     <script src="script.js"></script>
 </body>
-
 
 </html>
