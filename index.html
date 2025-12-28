@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Calculator & Converter</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="theme-selector">
+        <button class="theme-btn" onclick="setTheme('default')" title="Default Dark"></button>
+        <button class="theme-btn greenish" onclick="setTheme('greenish')" title="Greenish"></button>
+        <button class="theme-btn purple" onclick="setTheme('purple')" title="Purple"></button>
+    </div>
+
+    <div class="app-container">
+        <header>
+            <div class="tabs">
+                <button id="tab-calculator" class="tab-btn active" onclick="switchTab('calculator')">Calculator</button>
+                <button id="tab-converter" class="tab-btn" onclick="switchTab('converter')">Converter</button>
+                <div class="tab-indicator"></div>
+            </div>
+        </header>
+
+        <main id="content">
+            <!-- Calculator View -->
+            <section id="view-calculator" class="view active">
+                <div class="display-container">
+                    <div id="calc-history" class="display-history"></div>
+                    <div id="calc-result" class="display-main">0</div>
+                </div>
+                <div class="keypad">
+                    <button class="btn secondary" onclick="clearCalc()">AC</button>
+                    <button class="btn secondary" onclick="deleteLast()">DEL</button>
+                    <button class="btn secondary" onclick="appendOperator('**2')">x²</button>
+                    <button class="btn accent" onclick="appendOperator('/')">÷</button>
+
+                    <button class="btn" onclick="appendNumber('7')">7</button>
+                    <button class="btn" onclick="appendNumber('8')">8</button>
+                    <button class="btn" onclick="appendNumber('9')">9</button>
+                    <button class="btn accent" onclick="appendOperator('*')">×</button>
+
+                    <button class="btn" onclick="appendNumber('4')">4</button>
+                    <button class="btn" onclick="appendNumber('5')">5</button>
+                    <button class="btn" onclick="appendNumber('6')">6</button>
+                    <button class="btn accent" onclick="appendOperator('-')">−</button>
+
+                    <button class="btn" onclick="appendNumber('1')">1</button>
+                    <button class="btn" onclick="appendNumber('2')">2</button>
+                    <button class="btn" onclick="appendNumber('3')">3</button>
+                    <button class="btn accent" onclick="appendOperator('+')">+</button>
+
+                    <button class="btn secondary" onclick="appendOperator('Math.sqrt(')">√</button>
+                    <button class="btn" onclick="appendNumber('0')">0</button>
+                    <button class="btn" onclick="appendNumber('.')">.</button>
+                    <button class="btn equal" onclick="calculate()">=</button>
+                </div>
+                <div class="calc-rules">
+                    <p>• Multi-number operations supported</p>
+                    <p>• Avoid dividing by zero</p>
+                    <p>• Ensure square root has closing parenthesis if needed</p>
+                </div>
+            </section>
+
+            <!-- Converter View -->
+            <section id="view-converter" class="view">
+                <div class="converter-card">
+                    <div class="converter-row">
+                        <div class="input-group">
+                            <label id="label-from">From</label>
+                            <input type="number" id="convert-input" placeholder="0" oninput="doConvert()">
+
+                            <!-- Custom Dropdown From -->
+                            <div class="custom-dropdown" id="dropdown-from">
+                                <button class="dropdown-trigger" onclick="toggleDropdown('from')">
+                                    <span id="selected-from">Kilometer (KM)</span>
+                                    <span class="chevron"></span>
+                                </button>
+                                <div class="dropdown-options" id="options-from">
+                                    <div class="option" onclick="selectUnit('from', 'km', 'Kilometer (KM)')">Kilometer
+                                        (KM)</div>
+                                    <div class="option" onclick="selectUnit('from', 'm', 'Meter (M)')">Meter (M)</div>
+                                    <div class="option" onclick="selectUnit('from', 'cm', 'Centimeter (CM)')">Centimeter
+                                        (CM)</div>
+                                    <div class="option" onclick="selectUnit('from', 'mm', 'Millimeter (MM)')">Millimeter
+                                        (MM)</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swap-icon" onclick="swapUnits()">⇌</div>
+
+                        <div class="input-group">
+                            <label id="label-to">To</label>
+                            <div id="convert-result" class="result-box">0</div>
+
+                            <!-- Custom Dropdown To -->
+                            <div class="custom-dropdown" id="dropdown-to">
+                                <button class="dropdown-trigger" onclick="toggleDropdown('to')">
+                                    <span id="selected-to">Meter (M)</span>
+                                    <span class="chevron"></span>
+                                </button>
+                                <div class="dropdown-options" id="options-to">
+                                    <div class="option" onclick="selectUnit('to', 'km', 'Kilometer (KM)')">Kilometer
+                                        (KM)</div>
+                                    <div class="option" onclick="selectUnit('to', 'm', 'Meter (M)')">Meter (M)</div>
+                                    <div class="option" onclick="selectUnit('to', 'cm', 'Centimeter (CM)')">Centimeter
+                                        (CM)</div>
+                                    <div class="option" onclick="selectUnit('to', 'mm', 'Millimeter (MM)')">Millimeter
+                                        (MM)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
