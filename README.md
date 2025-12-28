@@ -1,2 +1,2 @@
-# FunChat
-Fun in the chat -_-
+# Calca
+Calculate -_-
